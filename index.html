@@ -1,0 +1,146 @@
+<!-- index.html (Página de Inicio) -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Flipside Burgers Inspired</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background-color: #fff9e6; color: #333; }
+        header { background: linear-gradient(90deg, #ff6347, #ffd700); color: #fff; padding: 40px 20px; text-align: center; }
+        header h1 { font-family: 'Playfair Display', serif; font-size: 48px; margin: 0; text-shadow: 2px 2px #000; }
+        header p { font-size: 24px; margin: 10px 0 0; }
+        nav { background-color: #333; padding: 15px; text-align: center; position: sticky; top: 0; z-index: 100; display: flex; justify-content: center; align-items: center; }
+        nav a { color: #fff; margin: 0 20px; text-decoration: none; font-weight: bold; font-size: 18px; transition: color 0.3s; }
+        nav a:hover { color: #ffd700; }
+        .user-info { color: #ffd700; font-size: 18px; position: absolute; right: 20px; }
+        .hero {
+    background: url('/img/1.jpeg') no-repeat center/99% auto, linear-gradient(90deg, #ff6347, #1e90ff); /* Reduce el tamaño al 50% del contenedor */
+    height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+}
+        .hero-content { background: rgba(0,0,0,0.5); padding: 40px; border-radius: 10px; }
+        .hero h2 { font-family: 'Playfair Display', serif; font-size: 60px; margin: 0; }
+        .hero p { font-size: 24px; }
+        .section { padding: 60px 20px; text-align: center; max-width: 1200px; margin: 0 auto; }
+        .destacadas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .item { background: #fff; border-radius: 15px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); padding: 20px; transition: transform 0.3s; }
+        .item:hover { transform: translateY(-10px); }
+        .item img { width: 100%; border-radius: 15px; }
+        .item h3 { font-family: 'Playfair Display', serif; font-size: 24px; color: #ff6347; }
+        button { background-color: #1e90ff; color: #fff; border: none; padding: 15px 30px; border-radius: 5px; cursor: pointer; font-size: 18px; font-weight: bold; transition: background 0.3s; }
+        button:hover { background-color: #4169e1; }
+        .opiniones { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin-top: 40px; }
+        .opinion { background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        footer { background: linear-gradient(90deg, #ff6347, #ffd700); color: #fff; text-align: center; padding: 20px; font-size: 14px; }
+    </style>
+</head>
+<body onload="displayUserInfo()">
+    <header>
+        <h1>Flipside Burgers Inspired</h1>
+        <p>Las Mejores Hamburguesas a la Parrilla</p>
+    </header>
+    <nav>
+        <div>
+            <a href="index.html">Inicio</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="menu.html">Menú</a>
+            <a href="pedidos.html">Pedidos</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="login.html">Login</a>
+            <a href="#" onclick="logout()" id="logoutLink" style="display: none;">Cerrar Sesion</a>
+        </div>
+        <span class="user-info" id="userInfo"></span>
+    </nav>
+    <div class="hero">
+        <div class="hero-content">
+            <h2>¡Descubre el Sabor Auténtico!</h2>
+            <p>Hamburguesas frescas, ingredientes premium y un ambiente acogedor.</p>
+            <button onclick="location.href='pedidos.html'">Pedir Ahora</button>
+        </div>
+    </div>
+    <div class="section">
+        <h2>Destacadas</h2>
+        <div class="destacadas">
+            <div class="item">
+                <img src="/img/2.jpeg" alt="Doble Queso" style="background-color: #ff6347;">
+                <h3>Doble Queso</h3>
+                <p>Deliciosa con doble capa de queso fundido.</p>
+                <button onclick="addToCart('Doble Queso', 10)">Agregar al Carrito - $10</button>
+            </div>
+            <div class="item">
+                <img src="/img/3.jpeg" alt="BBQ" style="background-color: #ffd700;">
+                <h3>BBQ</h3>
+                <p>Sabrosa salsa BBQ con carne jugosa.</p>
+                <button onclick="addToCart('BBQ', 12)">Agregar al Carrito - $12</button>
+            </div>
+            <div class="item">
+                <img src="/img/4.jpeg" alt="Pollo" style="background-color: #1e90ff;">
+                <h3>Pollo</h3>
+                <p>Pollo crujiente con vegetales frescos.</p>
+                <button onclick="addToCart('Pollo', 11)">Agregar al Carrito - $11</button>
+            </div>
+        </div>
+    </div>
+    <div class="section" style="background: #f8f8f8;">
+        <h2>Promociones del Día</h2>
+        <p>¡2x1 en hamburguesas clásicas todos los martes! No te lo pierdas.</p>
+    </div>
+    <div class="section">
+        <h2>Opiniones de Clientes</h2>
+        <div class="opiniones">
+            <div class="opinion">
+                <p>"¡Las mejores hamburguesas que he probado! El sabor es inigualable."</p>
+                <p>- Juan P.</p>
+            </div>
+            <div class="opinion">
+                <p>"Ingredientes frescos y servicio excelente. Altamente recomendado."</p>
+                <p>- María G.</p>
+            </div>
+            <div class="opinion">
+                <p>"Servicio excelente. Sumamente recomendado."</p>
+                <p>- Bryan A.</p>
+            </div>
+            <div class="opinion">
+                <p>"Todo muy rico recomendado."</p>
+                <p>- Luis C.</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 Flipside Burgers Inspired. Todos los derechos reservados.</p>
+    </footer>
+    <script>
+        function addToCart(name, price) {
+            if (!localStorage.getItem('loggedInUser')) {
+                alert('Por favor, inicia sesión para agregar al carrito.');
+                window.location.href = 'login.html';
+                return;
+            }
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({name, price});
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${name} agregado al carrito.`);
+        }
+
+        function displayUserInfo() {
+            const user = JSON.parse(localStorage.getItem('loggedInUser'));
+            if (user) {
+                document.getElementById('userInfo').textContent = `Bienvenido, ${user.username}`;
+                document.getElementById('logoutLink').style.display = 'inline';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('loggedInUser');
+            localStorage.removeItem('cart');
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>
